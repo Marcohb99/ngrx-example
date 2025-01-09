@@ -18,8 +18,4 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.store.loadAll().then(() => console.log('Todos loaded!'));
   }
-
-  async loadTodos() {
-    this.store.loadAll();
-  }
 }

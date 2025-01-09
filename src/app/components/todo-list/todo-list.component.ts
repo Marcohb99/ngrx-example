@@ -1,4 +1,4 @@
-import {Component, effect, inject, ViewChild} from '@angular/core';
+import {Component, effect, inject, Signal, viewChild, ViewChild} from '@angular/core';
 import {MatFormField, MatLabel, MatSuffix} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {MatIcon} from '@angular/material/icon';
@@ -27,8 +27,9 @@ import {NgStyle} from '@angular/common';
 })
 export class TodoListComponent {
   store = inject(TodosStore);
-  // @ViewChild(MatButtonToggleGroup)
-  filter = ViewChild(MatButtonToggleGroup);
+
+  // No usamos el decorador, en vez de eso "viewChild" es el equivalente pero para signals
+  filter: Signal<MatButtonToggleGroup> = viewChild.required(MatButtonToggleGroup);
 
   constructor() {
     effect(() => {

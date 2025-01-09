@@ -29,9 +29,9 @@ export const TodosStore = signalStore(
         patchState(store, {todos, loading: false});
       },
       async addTodo(title: string) {
-        const todo: Todo = await todosService.addTodo({title, completed: false});
+        const newTodo: Todo = await todosService.addTodo({title, completed: false});
         patchState(store, (state) => ({
-          todos: [...state.todos, todo]
+          todos: [...state.todos, newTodo]
         }));
       },
       async deleteTodo(id: string){
@@ -51,8 +51,13 @@ export const TodosStore = signalStore(
       }
     })
   ),
+  // Como todas las propiedades del state se convierten en señales
+  // para el filtro usaremos una computed signal
   withComputed((state) => ({
     filteredTodos: computed(() => {
+
+      // Esto hace que la señal "filteredTodos" se emita en cuanto hay un cambio en los todos.
+      // es decir, crea una dependencia
       const todos = state.todos();
       switch (state.filter()) {
         case "all":
