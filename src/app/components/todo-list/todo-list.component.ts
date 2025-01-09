@@ -28,8 +28,7 @@ import {NgStyle} from '@angular/common';
 export class TodoListComponent {
   store = inject(TodosStore);
 
-  // No usamos el decorador, en vez de eso "viewChild" es el equivalente pero para signals
-  filter: Signal<MatButtonToggleGroup> = viewChild.required(MatButtonToggleGroup);
+  filter = ViewChild(MatButtonToggleGroup);
 
   constructor() {
     effect(() => {
