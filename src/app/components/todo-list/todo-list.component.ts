@@ -25,4 +25,8 @@ import {TodosStore} from '../../store/todos.store';
 })
 export class TodoListComponent {
   store = inject(TodosStore);
+
+  async onAddTodo(value: string) {
+    await this.store.addTodo(value);
+  }
 }

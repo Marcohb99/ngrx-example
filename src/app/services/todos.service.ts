@@ -12,6 +12,14 @@ export class TodosService {
     return TODOS;
   }
 
+  async addTodo(todo: Partial<Todo>) {
+    await this.sleep(1000);
+    return {
+      id: Math.random().toString(36).slice(2,9),
+      ...todo
+    } as Todo;
+  }
+
   async sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
