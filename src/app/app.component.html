@@ -1,6 +1,10 @@
 <div class="app">
   <div class="angular-univ-container">
     <h1>NgRx tutorial</h1>
-    {{ store.todos() | json }}
+    @if (store.loading()) {
+      <mat-spinner/>
+    } @else {
+      <app-todo-list/>
+    }
   </div>
 </div>
