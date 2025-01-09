@@ -24,6 +24,11 @@ export class TodosService {
     await this.sleep(500)
   }
 
+  async updateTodo(id: string, completed: boolean){
+    await this.sleep(500);
+    console.log("updated " + id + " " + completed);
+  }
+
   async sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
