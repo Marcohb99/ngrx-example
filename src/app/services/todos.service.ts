@@ -20,6 +20,10 @@ export class TodosService {
     } as Todo;
   }
 
+  async deleteTodo(id: string) {
+    await this.sleep(500)
+  }
+
   async sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }

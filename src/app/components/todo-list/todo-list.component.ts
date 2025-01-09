@@ -29,4 +29,9 @@ export class TodoListComponent {
   async onAddTodo(value: string) {
     await this.store.addTodo(value);
   }
+
+  async onDeleteTodo(id: string, event: MouseEvent) {
+    event.stopPropagation();
+    await this.store.deleteTodo(id);
+  }
 }
