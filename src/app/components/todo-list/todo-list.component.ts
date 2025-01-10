@@ -6,6 +6,7 @@ import {MatButtonToggle, MatButtonToggleChange, MatButtonToggleGroup} from '@ang
 import {MatListOption, MatSelectionList} from '@angular/material/list';
 import {TodosFilter, TodosStore} from '../../store/todos.store';
 import {NgStyle} from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-todo-list',
@@ -23,7 +24,7 @@ import {NgStyle} from '@angular/common';
     NgStyle
   ],
   templateUrl: './todo-list.component.html',
-  styleUrl: './todo-list.component.scss'
+  styleUrl: './todo-list.component.scss',
 })
 export class TodoListComponent {
   store = inject(TodosStore);

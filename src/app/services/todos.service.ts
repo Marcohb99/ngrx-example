@@ -25,7 +25,7 @@ export class TodosService {
   }
 
   async updateTodo(id: string, completed: boolean){
-    await this.sleep(500);
+    // await this.sleep(500);
   }
 
   async sleep(ms: number) {

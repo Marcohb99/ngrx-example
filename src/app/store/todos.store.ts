@@ -1,5 +1,11 @@
 import {Todo} from '../model/todo.model';
-import {patchState, signalStore, withComputed, withMethods, withState} from '@ngrx/signals';
+import {
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+  patchState, WritableStateSource
+} from '@ngrx/signals';
 import {computed, inject} from '@angular/core';
 import {TodosService} from '../services/todos.service';
 
@@ -22,7 +28,10 @@ export const TodosStore = signalStore(
   {providedIn: 'root'},
   withState(initialState),
   withMethods(
-    (store, todosService = inject(TodosService)) => ({
+    (
+      store,
+      todosService = inject(TodosService)
+    ) => ({
       async loadAll() {
         patchState(store, {loading: true});
         const todos = await todosService.getTodos();
@@ -43,7 +52,7 @@ export const TodosStore = signalStore(
       async updateTodo(id: string, completed: boolean) {
         await todosService.updateTodo(id, completed);
         patchState(store, state => ({
-          todos: state.todos.map(t => t.id === id ? {...t, completed} : t)
+          todos: state.todos.map((t: Todo) => t.id === id ? {...t, completed} : t)
         }))
       },
       updateFilter(filter: TodosFilter) {
@@ -70,3 +79,5 @@ export const TodosStore = signalStore(
     })
   }))
 );
+
+export type TodosStore = InstanceType<typeof TodosStore>;
